@@ -1,0 +1,4 @@
+apiVersion: v2
+name: mern-app
+description: A Helm chart for Kubernetes MERN app
+version: 0.1.0

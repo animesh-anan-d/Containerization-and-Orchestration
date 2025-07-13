@@ -1,27 +1,16 @@
-# Sample MERN with Microservices
+# EKS MERN App Deployment
 
+## What’s Included
+- `eks-cluster.yaml` — EKS cluster config
+- `lambda/backup_db.py` — Lambda to backup DB
+- `helm/` — Helm chart for MERN app
 
+## Steps
+1. Create EKS: `eksctl create cluster -f infra/eks-cluster.yaml`
+2. Deploy Nodegroup (auto in config)
+3. Deploy Helm: `helm install mern-app helm/`
+4. Lambda deploy via console or Terraform
 
-For `helloService`, create `.env` file with the content:
-```bash
-PORT=3001
-```
-
-For `profileService`, create `.env` file with the content:
-```bash
-PORT=3002
-MONGO_URL="specifyYourMongoURLHereWithDatabaseNameInTheEnd"
-```
-
-Finally install packages in both the services by running the command `npm install`.
-
-<br/>
-For frontend, you have to install and start the frontend server:
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-Note: This will run the frontend in the development server. To run in production, build the application by running the command `npm run build`
+## Notes
+- CloudWatch logs integrated by EKS
+- Lambda writes backups to S3
